@@ -1,0 +1,56 @@
+:root {
+  /* Colors */
+  --greensetFull: rgba(107, 140, 122, 1);
+  --clayCourtFull: rgba(182, 115, 63, 1);
+  --concretFull: #286ea1;
+  --dark: rgb(51, 51, 51);
+  /* Fonts */
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow: hidden;
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  background-image: linear-gradient(
+    to top right,
+    var(--dark),
+    var(--concretFull),
+    var(--greensetFull),
+    var(--clayCourtFull),
+    var(--dark)
+  );
+  /* background: url(/zdenek-machacek-LRhLPnu4gjI-unsplash.jpg); */
+  background-position: center;
+  background-size: cover;
+}
+
+.drop {
+  position: absolute;
+  top: -20px;
+}
+
+.confetti {
+  display: block;
+  width: 10px;
+  height: 20px;
+  background-color: white;
+}
+
+@keyframes confettisFalls {
+  0% {
+    transform: translateY(0) rotate(calc(0deg * var(--rotation-direction)))
+      rotateY(calc(0deg * var(--rotation-y-direction)));
+  }
+  100% {
+    transform: translateY(105vh)
+      rotate(calc(360deg * var(--rotation-direction)))
+      rotateY(calc(360deg * var(--rotation-y-direction)));
+  }
+}
