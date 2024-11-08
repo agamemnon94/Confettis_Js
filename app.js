@@ -71,21 +71,52 @@
 
 // * ↓ En utilisant une Class ↓
 class ConfettiAnimation {
-  constructor(interval = 10, duration = 3000) {
+  constructor(
+    interval = 10,
+    duration = 3000,
+    startEvent = null,
+    endEvent = null,
+    optionalEndEvent = null
+  ) {
     this.body = document.querySelector("body");
     this.interval = interval; // Interval de création des confettis
     this.duration = duration; // Durée de vie de chaque confetti
+    this.startEvent = startEvent; // Évènement qui peut aussi déclencher l'animation
+    this.endEvent = endEvent; // Évènement qui peut aussi arêter l'animation
+    this.optionalEndEvent = optionalEndEvent; // Évènement optionnel pour arrêter l'animation
     this.intervalId = null;
+
+    if (this.startEvent) {
+      this.startEvent.addEventListener("click", () => this.start());
+    }
+
+    if (this.endEvent) {
+      this.endEvent.addEventListener(
+        this.endEvent.tagName === "BUTTON" ? "click" : "focus",
+        () => this.stop()
+      );
+    }
+
+    if (this.optionalEndEvent) {
+      this.optionalEndEvent.addEventListener(
+        this.optionalEndEvent.tagName === "BUTTON" ? "click" : "focus",
+        () => this.stop()
+      );
+    }
   }
 
-  // Méthode pour démarrer l'animation
+  /**
+   * Démarrer l'animation des confettis
+   */
   start() {
     if (!this.intervalId) {
       this.intervalId = setInterval(() => this.createConfetti(), this.interval);
     }
   }
 
-  // Méthode pour arrêter l'animation
+  /**
+   * Arrêter l'animation des confettis
+   */
   stop() {
     if (this.intervalId) {
       clearInterval(this.intervalId);
@@ -93,7 +124,9 @@ class ConfettiAnimation {
     }
   }
 
-  // Méthode pour créer un confetti
+  /**
+   * Créer un confetti
+   */
   createConfetti() {
     const confetti = document.createElement("div");
     confetti.classList.add("drop");
@@ -132,14 +165,15 @@ class ConfettiAnimation {
   }
 }
 
-// Utilisation de l'objet
-const confettiAnimation = new ConfettiAnimation(10, 3000);
+// Utilisation de l'objet (Pour une utilisation dans une autre page : Ajouter "export" devant le nom de la Class ou de l'objet et copier le code ↓ ci-dessous ↓ dans la page concernée)
+const confettiAnimation = new ConfettiAnimation(10, 3000, start, email, end);
 
+// ↓ Pour conditionner l'utilisation de l'animation à une page précise, décommenter et renseigner ↓
 // if (window.location.pathname === "/maintenance") {
 confettiAnimation.start();
 
 // Arrêter les confettis après un certain temps, par exemple 10 secondes
 setTimeout(() => {
   confettiAnimation.stop();
-}, 10000);
+}, 5000);
 // }

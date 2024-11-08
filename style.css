@@ -7,6 +7,10 @@
   /* Fonts */
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   position: relative;
   margin: 0;
@@ -17,6 +21,7 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   background-image: linear-gradient(
     to top right,
@@ -32,15 +37,55 @@ body {
 }
 
 h1 {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   color: #f1f1f1;
   text-transform: uppercase;
   font-size: clamp(2.5rem, 5svw, 5rem);
   font-family: "Roboto", sans-serif;
   text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.285);
+  margin-top: 30svh;
+}
+
+.button-wrapper {
+  position: relative;
+  display: flex;
+  gap: 10px;
+
+  & button {
+    border: none;
+    padding: 5px 10px;
+    font-size: clamp(1.6rem, 3svw, 2.2rem);
+    min-width: 7svw;
+    border-radius: 4px;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+
+    &:active {
+      transform: translateY(2px);
+      color: red;
+    }
+  }
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+
+  & p {
+    font-size: clamp(1.4rem, 3svw, 1.8rem);
+    font-family: "Roboto", sans-serif;
+  }
+
+  & input {
+    padding: 5px 10px;
+    font-size: clamp(1.6rem, 3svw, 2.2rem);
+    font-family: "Roboto", sans-serif;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
 }
 
 .drop {
